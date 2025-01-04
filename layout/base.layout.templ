@@ -1,0 +1,53 @@
+package layout
+
+import "github.com/tego101/cartero-smtp-catch/views/components"
+
+templ Base(title string) {
+	<!DOCTYPE html>
+	<html lang="en" data-theme="cupcake" class="view-transition">
+		<head>
+			<meta charset="UTF-8"/>
+			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+			<meta
+				name="description"
+				content="Cartero is a Outgoing SMTP Logger written in Go by gh:@tego101/x.com:@tegodotdev."
+			/>
+			<title>{ title }</title>
+			<meta name="google" content="notranslate"/>
+			<link rel="shortcut icon" href="/assets/img/templ.png" type="image/png"/>
+			<link rel="stylesheet" href="/assets/css/global.css"/>
+			<script src="https://cdn.tailwindcss.com"></script>
+			<script src="/assets/js/htmx@1.9.9.js"></script>
+			<script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
+			<script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
+			<script type="text/javascript">
+				htmx.config.ext = {
+					jsonEnc: true,
+					transition: true,
+				};
+			</script>
+			<script defer src="/assets/js/gsap@3.11.5.js"></script>
+			<script src="/assets/js/app.js"></script>
+			<script defer src="/assets/js/hyperscript@0.9.12.js"></script>
+			<script defer src="/assets/js/alpine@3.13.5.js"></script>
+			<script defer src="/assets/js/alpine.focus@3.0.0.js"></script>
+			<script defer src="/assets/js/alpine.sort@3.0.0.js"></script>
+			<script defer src="https://unpkg.com/@victoryoalli/alpinejs-timeout@1.0.0/dist/timeout.min.js"></script>
+			<script defer type="text/javascript">
+  				document.documentElement.classList.add('view-transition');
+			</script>
+		</head>
+		<body class="w-screen h-screen text-base transition-all ease-in-out bg-white overflow-none antialised overflow-x-clip text-slate-700 duration-600">
+    <main class="h-full w-full">
+        <div class="h-full w-full overflow-y-scroll relative z-10"> <!-- Added relative and z-10 -->
+            <div>
+                { children... }
+            </div>
+        </div>
+        <div class="xl:absolute xl:fixed bottom-0 -z-10 transition-all duration-400 ease-in-out flex flex-col items-center space-y-4 xl:space-x-4 w-full p-6 xl:flex-row xl:items-center xl:justify-between">
+            @components.Logo()
+        </div>
+    </main>
+</body>
+	</html>
+}

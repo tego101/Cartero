@@ -1,0 +1,76 @@
+package components
+
+import "strconv"
+
+type BreadCrumbsProps struct {
+	Separator string
+	Links     []BreadCrumbItem
+}
+
+type BreadCrumbItem struct {
+	Name string
+	Link string
+	Bold bool
+	Icon string
+}
+
+templ BreadCrumbs(props BreadCrumbsProps) {
+	<nav aria-label="breadcrumb" class="w-full rounded-xl">
+		<ol class="flex flex-wrap items-center w-full py-2 rounded-md bg-blue-gray-50 bg-opacity-60">
+			for i, link := range props.Links {
+				<li
+					key={ strconv.Itoa(i) }
+					if i == len(props.Links)-1 {
+						class="flex items-center font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900"
+					} else {
+						class="flex items-center font-sans text-sm antialiased font-normal leading-normal transition-colors duration-300 cursor-pointer text-blue-gray-900 hover:text-light-blue-500"
+					}
+				>
+					if (link.Link != "") {
+						<a
+							href={ templ.SafeURL(link.Link) }
+							if link.Bold {
+								class="font-bold space-x-1 inline-flex items-center"
+							} else {
+								class="space-x-1 inline-flex items-center"
+							}
+						>
+							<div class="pl-2">
+								@templ.Raw(link.Icon)
+							</div>
+							if link.Name != "" {
+								<span>{ link.Name }</span>
+							}
+						</a>
+					} else {
+						<div
+							if link.Bold {
+								class="font-bold space-x-1 inline-flex items-center"
+							} else {
+								class="space-x-1 inline-flex items-center"
+							}
+						>
+							<div class="pl-2">
+								@templ.Raw(link.Icon)
+							</div>
+							if link.Name != "" {
+								<span>{ link.Name }</span>
+							}
+						</div>
+					}
+					if i != len(props.Links)-1 {
+						<span
+							class="font-bold ml-2 text-sm antialiased font-normal pointer-events-none select-none"
+						>
+							if props.Separator != "" {
+								@templ.Raw(props.Separator)
+							} else {
+								/
+							}
+						</span>
+					}
+				</li>
+			}
+		</ol>
+	</nav>
+}

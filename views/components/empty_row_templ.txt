@@ -1,0 +1,6 @@
+<div class=\"w-full h-full py-2\"><div class=\"w-full border border-slate-200 p-2 px-4 rounded-2xl relative\"><div class=\"grid grid-cols-1 gap-2\"><div class=\"text-md flex flex-col md:flex-row justify-between w-full items-center md:space-x-2\"><div class=\"opacity-40 w-full max-w-[40px] top-0 left-0 right-0 h-1 rounded-full bg-clip-content\" style=\"background-image: repeating-linear-gradient(to right, #e0e0e0, #e0e0e0 10px, #ff0000 10px, #ff0000 20px, #0000ff 20px, #0000ff 30px);\"></div><div class=\"text-sm\">
+</div></div><div class=\"text-sm\"><span class=\"font-semibold mr-2 rounded-full px-2\">from</span>&nbsp;
+</div><div class=\"text-md\"><span class=\"font-semibold mr-2 bg-white rounded-full px-2 border-b\">to</span>&nbsp;
+</div><div class=\"text-xl font-bold underline space-x-2 inline-flex items-center\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-forward\"><polyline points=\"15 17 20 12 15 7\"></polyline><path d=\"M4 18v-2a4 4 0 0 1 4-4h12\"></path></svg><a class=\"text-slate-700\" href=\"
+\">
+</a></div></div></div></div>

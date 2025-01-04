@@ -1,0 +1,20 @@
+package views
+
+import (
+	"github.com/tego101/cartero-smtp-catch/layout"
+	helpers "github.com/tego101/cartero-smtp-catch/lib"
+	"github.com/tego101/cartero-smtp-catch/types"
+	"github.com/tego101/cartero-smtp-catch/views/components"
+	"net/http"
+	"strconv"
+)
+
+templ EmailView(email types.EmailProps, w http.ResponseWriter) {
+	@layout.Base(email.Subject) {
+		<div id={ helpers.GenerateUniqueKey(strconv.Itoa(email.ID)) }>
+			<div class="w-full max-w-4xl mx-auto p-10">
+				@components.Email(email, w)
+			</div>
+		</div>
+	}
+}

@@ -1,0 +1,37 @@
+package components
+
+import (
+
+)
+
+type EmptyEmailRowProps struct {
+	Message string
+}
+
+templ EmptyEmailRow(props EmptyEmailRowProps) {
+	<div
+		class="w-full h-full py-2"
+	>
+		<div
+			class="w-full border border-red-200 p-2 px-4 rounded-2xl relative"
+		>
+			<div
+				class="grid grid-cols-1 gap-2"
+			>
+				<div class="text-md flex flex-col md:flex-row justify-between w-full items-center md:space-x-2">
+					<div class="opacity-40 w-full max-w-[40px] top-0 left-0 right-0 h-1 rounded-full bg-clip-content" style="background-image: repeating-linear-gradient(to right, #e0e0e0, #e0e0e0 10px, #ff0000 10px, #ff0000 20px, #0000ff 20px, #0000ff 30px);"></div>
+					<div class="text-sm">--</div>
+				</div>
+
+				<div class="text-xl font-bold underline space-x-2 inline-flex items-center text-slate-700">
+				 if props.Message != "" {
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-ban"><circle cx="12" cy="12" r="10"/><path d="m4.9 4.9 14.2 14.2"/></svg>
+					<span>{ props.Message }</span>
+				 } else {
+						<span>No E-Mails.</span>
+					}
+				</div>
+			</div>
+		</div>
+	</div>
+}

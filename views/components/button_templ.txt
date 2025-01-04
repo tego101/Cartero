@@ -1,0 +1,33 @@
+<button
+ id=\"
+\"
+ class=\"
+\"
+ class=\"
+\"
+ type=\"
+\"
+ type=\"button\"
+ x-cloak x-data=\"{\n            isLoading: false\n        }\">
+<div class=\"
+\">
+</div>
+<span class=\"font-bold\">
+</span> 
+<span class=\"absolute inset-0 w-full h-full transition-all duration-300 ease-out transform translate-x-0 -skew-x-12 bg-black dark:bg-white group-hover:bg-white group-hover:border group-hover:border-white group-hover:skew-x-12\"></span> <span class=\"absolute inset-0 w-full h-full transition-all duration-300 ease-out transform skew-x-12 bg-white border border-black dark:bg-black group-hover:bg-black group-hover:-skew-x-12\"></span> <span class=\"absolute bottom-0 left-0 hidden w-10 h-20 transition-all duration-100 ease-out transform -translate-x-8 translate-y-10 bg-purple-600 -rotate-12\"></span> <span class=\"absolute bottom-0 right-0 hidden w-10 h-20 transition-all duration-100 ease-out transform translate-x-10 translate-y-8 bg-purple-400 -rotate-12\"></span> <span class=\"relative font-bold text-black dark:text-white group-hover:text-white\">
+</span> 
+<span class=\"absolute inset-y-0 left-0 w-0 transition-all bg-black rounded-full group-hover:w-full\"></span> <span class=\"relative font-bold text-black transition-colors group-hover:text-white\">
+</span> 
+<span class=\"absolute inset-0 w-full h-full transition duration-300 ease-out transform -translate-x-1 -translate-y-1 bg-black rounded-full dark:bg-black group-hover:translate-x-0 group-hover:translate-y-0\"></span> <span class=\"absolute inset-0 w-full h-full transition duration-300 ease-out transform translate-x-1 translate-y-1 bg-white border-2 border-black rounded-full dark:bg-white dark:group-hover:bg-black group-hover:translate-x-0 group-hover:translate-y-0 group-hover:bg-black\"></span> <span class=\"relative font-bold text-black dark:text-black group-hover:text-white dark:group-hover:text-white\">
+</span> 
+<span class=\"w-48 h-48 rounded rotate-[-40deg] bg-black dark:bg-white absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:text-white group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0\"></span> <span class=\"relative w-full font-bold text-left text-black transition-colors duration-300 ease-in-out dark:text-white group-hover:text-white dark:group-hover:text-black\">
+</span> 
+<span class=\"absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black rounded-full dark:bg-white group-hover:-translate-x-0 group-hover:-translate-y-0\"></span> <span class=\"absolute inset-0 w-full h-full bg-white border-2 border-black rounded-full dark:bg-black/90 dark:border-white group-hover:bg-white\"></span> <span class=\"relative font-bold text-black group-hover:text-black dark:text-white\">
+</span> 
+<div class=\"
+\">
+</div>
+<svg id=\"loader\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"
+\"><path d=\"M21 12a9 9 0 1 1-6.219-8.56\"></path></svg> 
+<svg x-show=\"isLoading\" id=\"loader\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"
+\"><path d=\"M21 12a9 9 0 1 1-6.219-8.56\"></path></svg></button>

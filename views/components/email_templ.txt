@@ -1,0 +1,13 @@
+<div class=\"flex flex-col space-y-2 text-black fade-in-div\"><div class=\"flex flex-row items-center justify-between space-x-2\"><div>
+</div><div class=\"\">
+<span class=\"htmx-indicator\">Loading...</span></div></div><div class=\"relative w-full p-4 border-b border-dashed border-slate-400\"><div class=\"grid grid-cols-1 gap-2\"><div class=\"inline-flex items-center justify-between w-full space-x-2 text-md\"><div class=\"opacity-40 w-full max-w-[40px] top-0 left-0 right-0 h-1 rounded-full bg-clip-content\" style=\"background-image: repeating-linear-gradient(to right, #e0e0e0, #e0e0e0 10px, #ff0000 10px, #ff0000 20px, #0000ff 20px, #0000ff 30px);\"></div><div class=\"text-sm\">
+</div></div><div class=\"text-sm\"><span class=\"px-2 mr-2 font-semibold text-white bg-indigo-500 border-b border-indigo-800 rounded-full\">from</span>&nbsp;
+</div><div class=\"text-md\"><span class=\"px-2 mr-2 font-semibold text-white bg-indigo-500 border-b border-indigo-800 rounded-full\">to</span>&nbsp;
+</div></div></div><div class=\"w-full p-4 bg-slate-200/40 rounded-2xl\"><div class=\"flex items-center items-end justify-end pb-4\"><h1 class=\"px-4 py-1 text-sm font-bold text-white bg-black rounded-full\">HTML</h1></div><div class=\"text-black break-words\">
+</div></div><div x-data=\"{ expanded: false }\" class=\"relative w-full p-4 py-4 border border-slate-200 rounded-2xl\"><div class=\"flex items-center items-end justify-between pb-4\">
+<h1 class=\"px-4 py-1 text-sm font-bold text-white bg-black rounded-full\">BODY</h1></div><div class=\"break-words fade-in-div\" x-show=\"expanded\" x-collapse>
+</div></div><div x-data=\"{ expanded: false }\" class=\"relative w-full p-4 py-4 border border-red-200 rounded-2xl\"><div class=\"flex items-center items-end justify-between pb-4\">
+<h1 class=\"px-4 py-1 text-sm font-bold text-white bg-black rounded-full\">RAW</h1></div><div class=\"break-words\" x-show=\"expanded\" x-collapse.min.20px>
+</div></div><div x-data=\"{ expanded: false }\" class=\"relative w-full p-4 py-4 border border-red-200 rounded-2xl opacity-10\"><div class=\"flex items-center items-end justify-between pb-4\">
+<h1 class=\"px-4 py-1 text-sm font-bold text-white bg-black rounded-full\">ATTACHMENTS</h1></div><div class=\"break-words\" x-show=\"expanded\" x-collapse.min.20px>
+</div></div></div>

@@ -1,0 +1,21 @@
+package components
+
+templ MailboxSwitcher() {
+	<div class="relative flex flex-row items-center py-2">
+		<div
+			class="absolute inset-y-0 left-0 w-1 h-8 rounded-full bg-clip-content rounded-2xl"
+			style="background-image: repeating-linear-gradient(to bottom, #ffffff, #ffffff 10px, #ff0000 10px, #ff0000 20px, #0000ff 20px, #0000ff 30px);"
+		></div>
+		<span class="px-4 font-bold">Main Mailbox</span>
+		@Button(ButtonProps{
+			Variant:    "linked",
+			Name:       "close_raw_button",
+			Text:       "",
+			Class:      "cursor-pointer text-sm transition-all duration-500 ease-in-out",
+			PrefixIcon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4 lucide lucide-chevrons-up-down"><path d="m7 15 5 5 5-5"/><path d="m7 9 5-5 5 5"/></svg>`,
+		}, templ.Attributes{
+			"id":       "close_raw_button",
+			"disabled": true,
+		})
+	</div>
+}

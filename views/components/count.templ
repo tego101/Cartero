@@ -1,0 +1,38 @@
+package components
+
+import (
+	helpers "github.com/tego101/cartero-smtp-catch/lib"
+	"strconv"
+)
+
+type CountComponentProps struct {
+	From  int
+	To    int
+	Class string
+}
+
+/**
+* Usage:
+* @components.Count(components.CountComponentProps{
+*	From: 0,
+*	To: 100,
+*	Class: "any custom css"
+* })
+ */
+
+templ Count(props CountComponentProps) {
+	<div
+		id={ "counter-" + helpers.GenerateUniqueKey(strconv.Itoa(props.From)) }
+		x-data={ "{ count: " + strconv.Itoa(props.From) + ", target: " + strconv.Itoa(props.To) + "}" }
+		x-init="intervalId = setInterval(() => {
+            if (count < target) {
+            count++;
+            } else {
+            clearInterval(intervalId);
+            }
+        }, 50)"
+		class={ props.Class }
+	>
+		<h1 x-text="count"></h1>
+	</div>
+}

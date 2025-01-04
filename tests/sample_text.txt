@@ -1,0 +1,20 @@
+From: sender@example.com
+To: receiver@example.com
+Subject: Hello World
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="boundary123"
+
+--boundary123
+Content-Type: text/plain; charset="UTF-8"
+
+Hello, this is the body.
+
+--boundary123
+Content-Type: text/plain; name="sample_text.txt"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="sample_text.txt"
+
+<insert base64 content of sample_text.txt here>
+
+--boundary123--
+.

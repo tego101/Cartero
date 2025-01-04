@@ -1,0 +1,96 @@
+@import "fonts.css";
+@import "daisy.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url(https://fonts.bunny.net/css?family=inter:100,200,300,400,500,600,700,800,900);
+
+html,
+body {
+	font-family: "Inter", sans-serif;
+}
+
+.htmx-indicator {
+	display: none;
+}
+.htmx-request .htmx-indicator {
+	display: inline;
+}
+.htmx-request.htmx-indicator {
+	display: inline;
+}
+
+::view-transition-old(root) {
+	animation: none;
+}
+
+::view-transition-new(root) {
+	animation: none;
+}
+
+/* Define your view transition animations here */
+/* For example: */
+::view-transition-old(root),
+::view-transition-new(root) {
+	animation: 0.5s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+::view-transition-old(root) {
+	animation-name: fade-out;
+}
+
+::view-transition-new(root) {
+	animation-name: fade-in;
+}
+
+@keyframes fade-out {
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0;
+	}
+}
+
+@keyframes fade-in {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+.fade-in-div {
+	opacity: 0;
+	animation: fadeIn 1s ease-in-out forwards;
+}
+
+.update-profile-form-container {
+	opacity: 0;
+	animation: fadeIn 1s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+.fade-out-div {
+	animation: fadeOut 1.5s ease-in-out forwards;
+}
+
+@keyframes fadeOut {
+	0% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}

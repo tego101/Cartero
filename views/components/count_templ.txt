@@ -1,0 +1,4 @@
+<div id=\"
+\" x-data=\"
+\" x-init=\"intervalId = setInterval(() =&gt; {\n            if (count &lt; target) {\n            count++;\n            } else {\n            clearInterval(intervalId);\n            }\n        }, 50)\" class=\"
+\"><h1 x-text=\"count\"></h1></div>

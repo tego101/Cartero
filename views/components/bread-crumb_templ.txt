@@ -1,0 +1,28 @@
+<nav aria-label=\"breadcrumb\" class=\"w-full rounded-xl\"><ol class=\"flex flex-wrap items-center w-full py-2 rounded-md bg-blue-gray-50 bg-opacity-60\">
+<li key=\"
+\"
+ class=\"flex items-center font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900\"
+ class=\"flex items-center font-sans text-sm antialiased font-normal leading-normal transition-colors duration-300 cursor-pointer text-blue-gray-900 hover:text-light-blue-500\"
+>
+<a href=\"
+\"
+ class=\"font-bold space-x-1 inline-flex items-center\"
+ class=\"space-x-1 inline-flex items-center\"
+><div class=\"pl-2\">
+</div>
+<span>
+</span>
+</a> 
+<div
+ class=\"font-bold space-x-1 inline-flex items-center\"
+ class=\"space-x-1 inline-flex items-center\"
+><div class=\"pl-2\">
+</div>
+<span>
+</span>
+</div>
+<span class=\"font-bold ml-2 text-sm antialiased font-normal pointer-events-none select-none\">
+/
+</span>
+</li>
+</ol></nav>
