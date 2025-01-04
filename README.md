@@ -43,6 +43,16 @@ Cartero listens for outgoing emails on SMTP port 1025, captures all email traffi
 - `WEB_HOST`: The host on which the web interface is served. Default is `localhost`.
 - `WEB_PORT`: The port on which the web interface is served. Default is `10122`.
 
+### Sample ENV file.
+
+```
+# .env
+SMTP_PORT=1025
+SMTP_HOST=0.0.0.0
+WEB_PORT=10122
+WEB_HOST=0.0.0.0
+```
+
 ## Dependencies
 
 - Go 1.18+
