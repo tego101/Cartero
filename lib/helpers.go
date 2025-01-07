@@ -35,7 +35,7 @@ func TimeParseFormat(value string) (string, error) {
 
 func TimeAgo(timestamp string) (string, error) {
 	// Parse the given timestamp using the appropriate layout
-	layout := "2006-01-02 15:04:05.999999999-07:00" // Adjusted for your timestamp format
+	layout := "2006-01-02 15:04:05.999999999-07:00"
 	t, err := time.Parse(layout, timestamp)
 	if err != nil {
 		return "", err

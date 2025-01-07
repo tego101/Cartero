@@ -60,6 +60,16 @@ WEB_HOST=0.0.0.0
 - TailwindCSS
 - Alpine.js
 
+## Screen Shots
+
+### Inbox
+
+![Inbox View]('/screen-shots/inbox-view.png')
+
+### E-Mail View
+
+![E-Mail View]('/screen-shots/email-view.png')
+
 ## License
 
 MIT License. See the [LICENSE](LICENSE) file for more details.

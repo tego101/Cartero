@@ -15,6 +15,7 @@ import (
 	"net/http"
 	"strconv"
 
+	"github.com/donseba/go-htmx"
 	helpers "github.com/tego101/cartero-smtp-catch/lib"
 	"github.com/tego101/cartero-smtp-catch/types"
 	"github.com/tego101/cartero-smtp-catch/views"
@@ -38,19 +39,15 @@ func PaginateEmails(w http.ResponseWriter, r *http.Request, db *sql.DB, limit in
 
 }
 
-func HandleAllEmails(w http.ResponseWriter, r *http.Request, db *sql.DB) {
-	// Ensure the handler supports only GET method
-	if r.Method != http.MethodGet {
-		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
-		return
-	}
-
-	// Query the database
+func HandleAllEmails(w http.ResponseWriter, r *http.Request, db *sql.DB, InboxInfo types.InboxConfig) {
+	// Query the database.
 	rows, err := db.Query("SELECT id, \"from\", \"to\", subject, body, raw, \"timestamp\" FROM emails ORDER BY timestamp DESC")
 	if err != nil {
 		http.Error(w, fmt.Sprintf("Failed to query emails: %v", err), http.StatusInternalServerError)
 		return
 	}
+
+	// Close the rows when the function ends.
 	defer rows.Close()
 
 	// Initialize slice for all emails
@@ -72,8 +69,7 @@ func HandleAllEmails(w http.ResponseWriter, r *http.Request, db *sql.DB) {
 		return
 	}
 
-	helpers.Render(w, r, views.Inbox(allEmails))
-
+	helpers.Render(w, r, views.Inbox(allEmails, InboxInfo))
 }
 
 /*
@@ -89,6 +85,11 @@ func HandleAllEmailsHTMX(w http.ResponseWriter, r *http.Request, db *sql.DB) {
 	limit := r.URL.Query().Get("limit")
 	pageNumber, err := strconv.Atoi(page)
 	limitPerPage, err := strconv.Atoi(limit)
+
+	if htmx.IsHxRequest(r) != true {
+		http.Error(w, fmt.Sprintf("Method not allowed"), http.StatusMethodNotAllowed)
+		return
+	}
 
 	if err != nil || pageNumber < 1 {
 		pageNumber = 1
@@ -187,6 +188,12 @@ func HandleSearchEmailsHTMX(w http.ResponseWriter, r *http.Request, db *sql.DB) 
 	// search post params
 	search := r.FormValue("q")
 	searchQuery := "%" + search + "%"
+
+	// Check if the request is an HTMX request.
+	if htmx.IsHxRequest(r) != true {
+		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+		return
+	}
 
 	// If the search is empty by default it will respond with all emails.
 	if search == "" {

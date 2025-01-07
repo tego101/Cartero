@@ -17,6 +17,7 @@ import (
 	"github.com/joho/godotenv"
 	_ "github.com/mattn/go-sqlite3"
 	"github.com/tego101/cartero-smtp-catch/handlers"
+	"github.com/tego101/cartero-smtp-catch/types"
 )
 
 var db *sql.DB
@@ -108,7 +109,11 @@ func main() {
 	http.HandleFunc("/", redirectToInbox)
 
 	http.HandleFunc("/inbox", func(w http.ResponseWriter, r *http.Request) {
-		handlers.HandleAllEmails(w, r, db)
+		handlers.HandleAllEmails(w, r, db, types.InboxConfig{
+			Label: "Default",
+			Host:  SMTP_HOST,
+			Port:  SMTP_PORT,
+		})
 	})
 
 	http.HandleFunc("/inbox/{id}", func(w http.ResponseWriter, r *http.Request) {
