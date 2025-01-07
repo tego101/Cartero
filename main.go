@@ -136,14 +136,17 @@ func main() {
 		handlers.HandleViewEmail(w, r, db)
 	})
 
-	http.HandleFunc("/inbox.json", func(w http.ResponseWriter, r *http.Request) {
+	http.HandleFunc("/mail.json/all", func(w http.ResponseWriter, r *http.Request) {
 		handlers.HandleAllEmailsJSON(w, r, db)
 	})
 
-	http.HandleFunc("/inbox.json/{id}", func(w http.ResponseWriter, r *http.Request) {
+	http.HandleFunc("/mail.json/{id}", func(w http.ResponseWriter, r *http.Request) {
 		handlers.HandleViewEmailJSON(w, r, db)
 	})
 
+	// End routes.
+
+	// Serve static assets.
 	fs := http.FileServer(http.Dir("./assets/"))
 	http.Handle("/assets/", http.StripPrefix("/assets/", fs))
 
