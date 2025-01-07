@@ -64,11 +64,11 @@ WEB_HOST=0.0.0.0
 
 ### Inbox
 
-![Inbox View]('/screen-shots/inbox-view.png')
+![Inbox View](/screen-shots/inbox-view.png)
 
 ### E-Mail View
 
-![E-Mail View]('/screen-shots/email-view.png')
+![E-Mail View](/screen-shots/email-view.png)
 
 ## License
 
