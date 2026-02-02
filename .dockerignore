@@ -1,0 +1,52 @@
+# Git
+.git
+.gitignore
+
+# Documentation
+README.md
+*.md
+
+# IDE files
+.vscode
+.idea
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Test files
+tests/
+*_test.go
+
+# Temporary files
+tmp/
+temp/
+
+# Build artifacts
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Database files (will be created in container)
+*.db
+*.sqlite
+*.sqlite3
+
+# Coverage reports
+coverage.out
+
+# Vendor directory
+vendor/

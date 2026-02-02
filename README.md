@@ -36,6 +36,62 @@ Cartero listens for outgoing emails on SMTP port 1025, captures all email traffi
 
 4. Visit `http://localhost:10122` in your browser to view the captured emails.
 
+## Docker Setup
+
+### Using Docker Compose (Recommended)
+
+1. Clone the repository:
+
+    ```
+    git clone https://github.com/tego101/cartero.git
+    cd cartero
+    ```
+
+2. Run with Docker Compose:
+
+    ```
+    docker-compose up -d
+    ```
+
+3. Visit `http://localhost:10122` in your browser to view the captured emails.
+
+### Using Docker directly
+
+1. Build the Docker image:
+
+    ```
+    docker build -t cartero .
+    ```
+
+2. Run the container:
+
+    ```
+    docker run -d -p 1025:1025 -p 10122:10122 --name cartero cartero
+    ```
+
+3. Visit `http://localhost:10122` in your browser to view the captured emails.
+
+#### Docker Volumes
+
+To persist the email database, you can mount a volume:
+
+```
+docker run -d -p 1025:1025 -p 10122:10122 -v $(pwd)/data:/app/data --name cartero cartero
+```
+
+#### Environment Variables in Docker
+
+You can override the default environment variables:
+
+```
+docker run -d -p 1025:1025 -p 10122:10122 \
+  -e SMTP_HOST=0.0.0.0 \
+  -e SMTP_PORT=1025 \
+  -e WEB_HOST=0.0.0.0 \
+  -e WEB_PORT=10122 \
+  --name cartero cartero
+```
+
 ## Configuration (env variables)
 
 - `SMTP_HOST`: The host on which Cartero listens for outgoing emails. Default is `localhost`.

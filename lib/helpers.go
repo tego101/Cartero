@@ -2,6 +2,7 @@ package helpers
 
 import (
 	"fmt"
+	"log"
 	"math/rand"
 	"net/http"
 	"strconv"
@@ -16,6 +17,7 @@ func Render(w http.ResponseWriter, r *http.Request, component templ.Component) {
 	w.Header().Set("Content-Type", "text/html")
 	err := component.Render(r.Context(), w)
 	if err != nil {
+		log.Printf("Failed to render component: %v", err)
 		http.Error(w, "Failed to render component", http.StatusInternalServerError)
 	}
 }

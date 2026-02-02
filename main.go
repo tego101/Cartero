@@ -61,16 +61,6 @@ func main() {
 		log.Fatalf("Failed to open database: %v", err)
 	}
 
-	// Query the count of emails
-	var emailCount int
-	errEmailCount := db.QueryRow("SELECT COUNT(*) FROM emails").Scan(&emailCount)
-	if errEmailCount != nil {
-		log.Fatalf("Failed counting emails: %v", err)
-		return
-	}
-
-	defer db.Close()
-
 	createTableSQL := `CREATE TABLE IF NOT EXISTS emails (
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
 		"from" TEXT,
@@ -82,9 +72,32 @@ func main() {
 		timestamp TEXT
 	);`
 
+	indexSQL := []string{
+		`CREATE INDEX IF NOT EXISTS idx_emails_from ON emails("from")`,
+		`CREATE INDEX IF NOT EXISTS idx_emails_to ON emails("to")`,
+		`CREATE INDEX IF NOT EXISTS idx_emails_subject ON emails(subject)`,
+		`CREATE INDEX IF NOT EXISTS idx_emails_timestamp ON emails(timestamp)`,
+		`CREATE INDEX IF NOT EXISTS idx_emails_body ON emails(body)`,
+	}
+
 	_, err = db.Exec(createTableSQL)
 	if err != nil {
 		log.Fatalf("Failed to create table: %v", err)
+	}
+
+	for _, sql := range indexSQL {
+		_, err = db.Exec(sql)
+		if err != nil {
+			log.Fatalf("Failed to create index: %v", err)
+		}
+	}
+
+	// Query the count of emails
+	var emailCount int
+	errEmailCount := db.QueryRow("SELECT COUNT(*) FROM emails").Scan(&emailCount)
+	if errEmailCount != nil {
+		log.Fatalf("Failed counting emails: %v", err)
+		return
 	}
 
 	log.Println(`
@@ -146,9 +159,14 @@ func main() {
 
 	// End routes.
 
-	// Serve static assets.
+	// Serve static assets with security headers
 	fs := http.FileServer(http.Dir("./assets/"))
-	http.Handle("/assets/", http.StripPrefix("/assets/", fs))
+	http.Handle("/assets/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("X-Content-Type-Options", "nosniff")
+		w.Header().Set("X-Frame-Options", "DENY")
+		w.Header().Set("X-XSS-Protection", "1; mode=block")
+		http.StripPrefix("/assets/", fs).ServeHTTP(w, r)
+	}))
 
 	webHostPort := fmt.Sprintf("%s:%s", WEB_HOST, WEB_PORT)
 
@@ -213,7 +231,7 @@ func handleSMTPConnection(conn net.Conn) {
 			fmt.Fprint(writer, "250 Hello\r\n")
 		case strings.HasPrefix(line, "MAIL FROM:"):
 			fmt.Fprint(writer, "250 OK\r\n")
-		case strings.HasPrefix(line, "MAIL TO:"):
+		case strings.HasPrefix(line, "RCPT TO:"):
 			fmt.Fprint(writer, "250 OK\r\n")
 		case strings.HasPrefix(line, "DATA"):
 			fmt.Fprint(writer, "354 End data with <CR><LF>.<CR><LF>\r\n")
@@ -277,6 +295,26 @@ func saveEmail(email string) error {
 		return fmt.Errorf("failed to read email body: %v", err)
 	}
 
-	_, err = db.Exec("INSERT INTO emails (\"from\", \"to\", subject, body, raw, \"timestamp\") VALUES (?, ?, ?, ?, ?, ?)", from, to, subject, string(body), email, time.Now())
+	attachments := extractAttachments(email)
+
+	_, err = db.Exec("INSERT INTO emails (\"from\", \"to\", subject, body, raw, attachments, \"timestamp\") VALUES (?, ?, ?, ?, ?, ?, ?)", from, to, subject, string(body), email, attachments, time.Now())
 	return err
+}
+
+func extractAttachments(email string) string {
+	contentType := "text/plain"
+	if strings.Contains(email, "Content-Type: multipart/") {
+		parts := strings.Split(email, "Content-Type:")
+		for _, part := range parts {
+			if strings.Contains(part, "name=") {
+				start := strings.Index(part, "name=") + 5
+				end := strings.Index(part[start:], "\"")
+				if end != -1 {
+					filename := part[start : start+end]
+					contentType += fmt.Sprintf("; attachment: %s", filename)
+				}
+			}
+		}
+	}
+	return contentType
 }

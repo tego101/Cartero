@@ -1,0 +1,42 @@
+services:
+  cartero:
+    build: .
+    ports:
+      - "1025:1025" # SMTP port
+      - "10122:10122" # Web port
+    environment:
+      - SMTP_HOST=0.0.0.0
+      - SMTP_PORT=1025
+      - WEB_HOST=0.0.0.0
+      - WEB_PORT=10122
+    volumes:
+      - cartero_data:/app/data
+      - ./.env:/app/.env:ro
+    develop:
+      watch:
+        - action: sync
+          path: .
+          target: /app
+          ignore:
+            - .git/
+            - inbox.db
+            - cartero
+    restart: unless-stopped
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "wget",
+          "--no-verbose",
+          "--tries=1",
+          "--spider",
+          "http://localhost:10122/inbox",
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+volumes:
+  cartero_data:
+    driver: local
